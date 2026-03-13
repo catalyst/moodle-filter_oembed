@@ -35,9 +35,14 @@
 }}
 <tr id="oembed-display-providers_{{pid}}" class="{{extraclass}}{{#editing}} oembed-provider-editing{{/editing}}" data-pid="{{pid}}">
     <td id="oembed-display-providers_{{pid}}_c0" class="cell c0 provider">
-        <a href="{{providerurl}}" target="_blank" class="list-providername">{{providername}}</a>
-            <div class="oembed-provider-details">
-            </div>
+        <a href="#" class="list-providername">{{providername}}</a>
+        <div class="oembed-provider-details">
+        </div>
+    </td>
+    <td id="oembed-display-providers_{{pid}}_c1" class="cell c1 providerurl">
+        <a href="{{providerurl}}" target="_blank">{{providerurl}}</a>
+    </td>
+    <td id="oembed-display-providers_{{pid}}_c2" class="cell c2 actions" style="white-space: nowrap;">
         <div class="oembed-provider-actions">
             {{{enableaction}}} {{{editaction}}} {{{deleteaction}}}
         </div>

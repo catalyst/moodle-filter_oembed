@@ -67,7 +67,7 @@ class provider extends moodleform {
             } else {
                 $fieldlabel = get_string($fieldname, 'filter_oembed');
             }
-            
+
             if ($fieldname === 'rendermode') {
                 $options = [
                     'server' => get_string('rendermode_server', 'filter_oembed'),
@@ -77,7 +77,15 @@ class provider extends moodleform {
             } else {
                 $el = $mform->addElement($row->type, $fieldname, $fieldlabel);
             }
-            
+
+            if ($fieldname === 'providerurl') {
+                $el->updateAttributes(['size' => '80']);
+            }
+
+            if ($fieldname === 'endpoints') {
+                $el->updateAttributes(['style' => 'font-family: monospace; white-space: pre-wrap; width: 100%;', 'rows' => '10', 'cols' => '80']);
+            }
+
             if (!empty($commonattributes)) {
                 $el->updateAttributes($commonattributes);
             }

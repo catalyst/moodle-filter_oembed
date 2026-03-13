@@ -128,7 +128,7 @@ class oembed {
      */
     public function html_output($text) {
         global $PAGE;
-        
+
         $lazyload = get_config('filter_oembed', 'lazyload');
         $lazyload = $lazyload == 1 || $lazyload === false;
         $output = '';

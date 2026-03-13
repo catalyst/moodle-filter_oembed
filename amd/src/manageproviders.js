@@ -206,8 +206,26 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates', 'core/frag
                     );
                 };
 
-                 // Listen for click cancel.
+                 // Listen for click on edit button.
                 $('#providermanagement').on('click', '.oembed-provider-actions .filter-oembed-edit', function(e) {
+                    e.preventDefault();
+
+                    var row = $(this).parents('tr')[0];
+                    var pid = $(row).data('pid');
+
+                    // Remove editing class from current row / previous row and delete form.
+                    if (self.prevEditId !== null) {
+                        turnEditingOff(self.prevEditId);
+                        turnEditingOff(pid);
+                    }
+
+                    self.prevEditId = pid;
+
+                    updateProviderForm(pid);
+                });
+
+                 // Listen for click on provider name.
+                $('#providermanagement').on('click', '.list-providername', function(e) {
                     e.preventDefault();
 
                     var row = $(this).parents('tr')[0];
@@ -256,10 +274,12 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates', 'core/frag
                              * On reloading providers or single row append success HTML.
                              */
                             var onReload = function() {
-                                var rowcell = $('#oembed-display-providers_' + pid + ' td');
-                                $(rowcell).append(successHTML);
-                                $(rowcell).find(' div.alert-success').attr('tabindex', -1);
-                                $(rowcell).find(' div.alert-success').focus();
+                                // Remove any existing success messages.
+                                $('#providermanagement .alert-success').remove();
+                                // Add success message at the top of the provider management div.
+                                $('#providermanagement').prepend(successHTML);
+                                $('#providermanagement div.alert-success').attr('tabindex', -1);
+                                $('#providermanagement div.alert-success').focus();
                             };
 
                             if (source.indexOf('download::') > -1) {

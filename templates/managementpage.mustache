@@ -52,11 +52,13 @@ Displayed if x was true.
           <thead>
             <tr>
               <th class="header c0 provider" scope="col"><input class="search" placeholder="{{#str}}provider, filter_oembed{{/str}}" /></th>
+              <th class="header c1 providerurl" scope="col">{{#str}}providerurl, filter_oembed{{/str}}</th>
+              <th class="header c2 actions" scope="col"></th>
             </tr>
           </thead>
           <tbody class="list">
             <tr id="oembed-local-providers-head-row" class="oembed-local-providers">
-                <th id="oembed-local-providers-head">
+                <th id="oembed-local-providers-head" colspan="3">
                   {{#str}}localproviders, filter_oembed{{/str}}
                 </th>
             </tr>
@@ -64,7 +66,7 @@ Displayed if x was true.
               {{> filter_oembed/managementpagerow}}
           {{/localrows}}
             <tr id="oembed-plugin-providers-head-row" class="oembed-plugin-providers">
-                <th id="oembed-plugin-providers-head">
+                <th id="oembed-plugin-providers-head" colspan="3">
                   {{#str}}pluginproviders, filter_oembed{{/str}}
                 </th>
             </tr>
@@ -72,7 +74,7 @@ Displayed if x was true.
               {{> filter_oembed/managementpagerow}}
           {{/pluginrows}}
             <tr id="oembed-download-providers-head-row" class="oembed-download-providers">
-                <th id="oembed-download-providers-head">
+                <th id="oembed-download-providers-head" colspan="3">
                   {{#str}}downloadproviders, filter_oembed{{/str}}
                 </th>
             </tr>

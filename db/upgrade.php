@@ -143,7 +143,6 @@ function xmldb_filter_oembed_upgrade($oldversion) {
     }
 
     if ($oldversion < 2026031300) {
-
         // Define field rendermode to be added to filter_oembed.
         $table = new xmldb_table('filter_oembed');
         $field = new xmldb_field('rendermode', XMLDB_TYPE_CHAR, '50', null, null, null, 'server', 'enabled');
