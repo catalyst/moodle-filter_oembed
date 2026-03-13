@@ -127,6 +127,8 @@ class oembed {
      * @return string
      */
     public function html_output($text) {
+        global $PAGE;
+        
         $lazyload = get_config('filter_oembed', 'lazyload');
         $lazyload = $lazyload == 1 || $lazyload === false;
         $output = '';
@@ -144,18 +146,43 @@ class oembed {
                 $params = [];
                 parse_str($query, $params);
 
-                // If we have a consumer request, we're done searching. Try for a response.
-                $jsonret = $provider->oembed_response($requesturl);
-                if (!$jsonret) {
-                    $output = '';
-                } else if ($lazyload) {
-                    $output = $this->oembed_getpreloadhtml($jsonret, $params);
+                // Check if this provider uses client-side rendering.
+                if ($provider->rendermode === 'client') {
+                    $PAGE->requires->js_call_amd('filter_oembed/clientrender', 'init');
+                    $output = $this->oembed_getclienthtml($requesturl, $text, $params);
                 } else {
-                    $output = $this->oembed_gethtml($jsonret, $params);
+                    // Server-side rendering.
+                    $jsonret = $provider->oembed_response($requesturl);
+                    if (!$jsonret) {
+                        $output = '';
+                    } else if ($lazyload) {
+                        $output = $this->oembed_getpreloadhtml($jsonret, $params);
+                    } else {
+                        $output = $this->oembed_gethtml($jsonret, $params);
+                    }
                 }
                 break; // Done, break out of all loops.
             }
         }
+        return $output;
+    }
+
+    /**
+     * Get client-side rendering placeholder html.
+     *
+     * @param string $requesturl The oembed request URL.
+     * @param string $originalurl The original URL being embedded.
+     * @param array $params Additional URL parameters.
+     * @return string
+     */
+    protected function oembed_getclienthtml($requesturl, $originalurl, $params = []) {
+        $paramsdata = !empty($params) ? htmlspecialchars(json_encode($params), ENT_QUOTES, 'UTF-8') : '';
+        $output = '<div class="oembed-client-render" ' .
+                  'data-oembed-url="' . htmlspecialchars($requesturl, ENT_QUOTES, 'UTF-8') . '" ' .
+                  'data-original-url="' . htmlspecialchars($originalurl, ENT_QUOTES, 'UTF-8') . '" ' .
+                  ($paramsdata ? 'data-params="' . $paramsdata . '"' : '') . '>' .
+                  '<div class="oembed-loading">Loading...</div>' .
+                  '</div>';
         return $output;
     }
 

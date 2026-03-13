@@ -66,6 +66,11 @@ class provider {
     protected $source = '';
 
     /**
+     * @var rendermode
+     */
+    protected $rendermode = 'server';
+
+    /**
      * @var Class constant descriptio for local.
      */
     const PROVIDER_SOURCE_LOCAL = 'local::';
@@ -110,6 +115,7 @@ class provider {
             }
 
             $this->source = isset($data['source']) ? $data['source'] : '';
+            $this->rendermode = isset($data['rendermode']) ? $data['rendermode'] : 'server';
         }
     }
 
@@ -248,7 +254,7 @@ class provider {
      * @throws \coding_exception
      */
     public function __get($name) {
-        $allowed = ['id', 'enabled', 'providername', 'providerurl', 'endpoints', 'source'];
+        $allowed = ['id', 'enabled', 'providername', 'providerurl', 'endpoints', 'source', 'rendermode'];
         if (in_array($name, $allowed)) {
             return $this->$name;
         } else {

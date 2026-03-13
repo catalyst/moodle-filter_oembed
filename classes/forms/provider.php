@@ -47,6 +47,7 @@ class provider extends moodleform {
             'providerurl'  => ['required' => true, 'type' => 'text', 'paramtype' => PARAM_URL],
             'endpoints'    => ['required' => true, 'type' => 'textarea', 'paramtype' => PARAM_TEXT],
             'enabled'      => ['required' => false, 'type' => 'checkbox', 'paramtype' => PARAM_INT],
+            'rendermode'   => ['required' => false, 'type' => 'select', 'paramtype' => PARAM_TEXT],
             'source'       => ['required' => true, 'type' => 'hidden', 'paramtype' => PARAM_TEXT],
         ];
 
@@ -66,7 +67,17 @@ class provider extends moodleform {
             } else {
                 $fieldlabel = get_string($fieldname, 'filter_oembed');
             }
-            $el = $mform->addElement($row->type, $fieldname, $fieldlabel);
+            
+            if ($fieldname === 'rendermode') {
+                $options = [
+                    'server' => get_string('rendermode_server', 'filter_oembed'),
+                    'client' => get_string('rendermode_client', 'filter_oembed'),
+                ];
+                $el = $mform->addElement($row->type, $fieldname, $fieldlabel, $options);
+            } else {
+                $el = $mform->addElement($row->type, $fieldname, $fieldlabel);
+            }
+            
             if (!empty($commonattributes)) {
                 $el->updateAttributes($commonattributes);
             }

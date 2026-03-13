@@ -142,5 +142,20 @@ function xmldb_filter_oembed_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2016070501, 'filter', 'oembed');
     }
 
+    if ($oldversion < 2026031300) {
+
+        // Define field rendermode to be added to filter_oembed.
+        $table = new xmldb_table('filter_oembed');
+        $field = new xmldb_field('rendermode', XMLDB_TYPE_CHAR, '50', null, null, null, 'server', 'enabled');
+
+        // Conditionally launch add field rendermode.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Oembed savepoint reached.
+        upgrade_plugin_savepoint(true, 2026031300, 'filter', 'oembed');
+    }
+
     return true;
 }

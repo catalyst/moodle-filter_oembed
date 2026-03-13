@@ -12,6 +12,7 @@
         <FIELD NAME="endpoints" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON encoded endpoints structure."/>
         <FIELD NAME="source" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Original source of provider. This may include a category code."/>
         <FIELD NAME="enabled" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="rendermode" TYPE="char" LENGTH="50" NOTNULL="false" DEFAULT="server" SEQUENCE="false" COMMENT="Render mode: server or client"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
       </FIELDS>
