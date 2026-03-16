@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Filter for component 'filter_oembed'
+ * Filter for component 'filter_oEmbed'
  *
- * @package   filter_oembed
+ * @package   filter_oEmbed
  * @copyright Erich M. Wappis / Guy Thomas 2016
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * code based on the following filter
@@ -25,7 +25,7 @@
  */
 
 $string['atag'] = 'Filter on &lt; a &gt; tags';
-$string['cachedef_embeddata'] = 'Oembed Cache';
+$string['cachedef_embeddata'] = 'oEmbed Cache';
 $string['cachelifespan'] = 'Cache lifespan';
 $string['cachelifespan_daily'] = '1 day';
 $string['cachelifespan_desc'] = 'The duration of time before the providers list should be refreshed.';
@@ -39,15 +39,15 @@ $string['divtag'] = 'Filter on &lt; div &gt; tags';
 $string['downloadproviders'] = 'Downloaded providers';
 $string['enabled'] = 'Enabled';
 $string['endpoints'] = 'End points';
-$string['filtername'] = 'Oembed Filter';
+$string['filtername'] = 'oEmbed Filter';
 $string['lazyload'] = 'Delay Embed Loading (Lazyload)';
 $string['localproviders'] = 'Local providers';
 $string['manageproviders'] = 'Manage providers';
 $string['nocopytolocal'] = 'Could not create new local provider definition for "{$a}". It may already exist.';
-$string['playoembed'] = 'Play';
-$string['pluginname'] = 'Oembed filter';
+$string['playoEmbed'] = 'Play';
+$string['pluginname'] = 'oEmbed filter';
 $string['pluginproviders'] = 'Plugin providers';
-$string['privacy:metadata'] = 'Oembed filter does not store any personal data.';
+$string['privacy:metadata'] = 'oEmbed filter does not store any personal data.';
 $string['provider'] = 'Provider';
 $string['providername'] = 'Provider Name';
 $string['providersallowed'] = 'Providers allowed.';
@@ -60,8 +60,8 @@ $string['saveasnew'] = 'Save as new local';
 $string['savefailed'] = 'Failed to save provider.';
 $string['saveok'] = 'Successfully saved provider.';
 $string['source'] = 'Provider source';
-$string['subplugintype_oembedprovider'] = 'Oembed provider';
-$string['subplugintype_oembedprovider_plural'] = 'Oembed providers';
+$string['subplugintype_oEmbedprovider'] = 'oEmbed provider';
+$string['subplugintype_oEmbedprovider_plural'] = 'oEmbed providers';
 $string['targettag'] = 'Target tag';
-$string['targettag_desc'] = 'What tag type should be filtered - anchors or divs with the oembed class.';
-$string['updateproviders'] = 'Update Oembed provider information.';
+$string['targettag_desc'] = 'What tag type should be filtered - anchors or divs with the oEmbed class.';
+$string['updateproviders'] = 'Update oEmbed provider information.';
