@@ -30,7 +30,6 @@ namespace filter_oembed\provider;
  * oEmbed provider implementation for ISSUU
  */
 class issuu extends provider {
-
     /**
      * Constructor.
      * @param string $data JSON decoded array or a data object containing all provider data.

@@ -30,7 +30,6 @@ namespace filter_oembed\provider;
  * oEmbed provider implementation for Microsoft Forms
  */
 class officeforms extends provider {
-
     /**
      * Constructor.
      * @param array $data JSON decoded array or a data object containing all provider data.
@@ -60,7 +59,7 @@ class officeforms extends provider {
      */
     public function get_replacement($matched) {
         if (!empty($matched) && !empty($matched[1])) {
-            $url = 'https://forms.office.com/Pages/ResponsePage.aspx?id='.$matched[1].'&embed=true';
+            $url = 'https://forms.office.com/Pages/ResponsePage.aspx?id=' . $matched[1] . '&embed=true';
             $embedhtml = $this->getembedhtml($url);
             return $embedhtml;
         }

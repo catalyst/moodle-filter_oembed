@@ -37,7 +37,6 @@ use filter_oembed\db\providerrow;
  * @copyright 2016 The POET Group
  */
 class providermodel implements \renderable {
-
     /**
      * @var int provider row id
      */
@@ -125,35 +124,46 @@ class providermodel implements \renderable {
         $this->source = $provider->source;
         $this->sourcetype = provider::source_type($provider->source);
         if ($provider->enabled) {
-
             // Disable action.
             $this->enabled = true;
             $this->extraclass = '';
             $action = $CFG->wwwroot . '/filter/oembed/manageproviders.php?action=disable&pid=' .
                     $provider->id . '&sesskey=' . sesskey();
-            $this->enableaction = $output->action_icon($action,
-                new \pix_icon('t/hide', get_string('hide')), null, ['class' => 'action-icon filter-oembed-visibility']);
+            $this->enableaction = $output->action_icon(
+                $action,
+                new \pix_icon('t/hide', get_string('hide')),
+                null,
+                ['class' => 'action-icon filter-oembed-visibility']
+            );
         } else {
-
             // Enable action.
             $action = $CFG->wwwroot . '/filter/oembed/manageproviders.php?action=enable&pid=' .
                     $provider->id . '&sesskey=' . sesskey();
             $this->extraclass = 'dimmed_text';
-            $this->enableaction = $output->action_icon($action,
-                new \pix_icon('t/show', get_string('show')), null, ['class' => 'action-icon filter-oembed-visibility']);
+            $this->enableaction = $output->action_icon(
+                $action,
+                new \pix_icon('t/show', get_string('show')),
+                null,
+                ['class' => 'action-icon filter-oembed-visibility']
+            );
         }
 
         // Edit action.
         $action = $CFG->wwwroot . '/filter/oembed/manageproviders.php?action=edit&pid=' .
                 $provider->id . '&sesskey=' . sesskey();
-        $this->editaction = $output->action_icon($action,
-            new \pix_icon('t/edit', get_string('edit')), null, ['class' => 'action-icon filter-oembed-edit']);
+        $this->editaction = $output->action_icon(
+            $action,
+            new \pix_icon('t/edit', get_string('edit')),
+            null,
+            ['class' => 'action-icon filter-oembed-edit']
+        );
 
         // Delete action.
         if ($this->sourcetype == provider::PROVIDER_SOURCE_LOCAL) {
             $action = $CFG->wwwroot . '/filter/oembed/manageproviders.php?action=delete&pid=' .
                 $provider->id . '&sesskey=' . sesskey();
-            $this->deleteaction = $output->action_icon($action,
+            $this->deleteaction = $output->action_icon(
+                $action,
                 new \pix_icon('t/delete', get_string('delete')),
                 null,
                 ['class' => 'action-icon filter-oembed-delete']
@@ -161,6 +171,5 @@ class providermodel implements \renderable {
         } else {
             $this->deleteaction = '';
         }
-
     }
 }

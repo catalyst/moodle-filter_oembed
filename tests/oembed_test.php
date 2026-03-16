@@ -36,7 +36,6 @@ require_once($CFG->dirroot . '/filter/oembed/tests/testable_oembed.php');
  * @group filter_oembed
  */
 final class oembed_test extends \advanced_testcase {
-
     /**
      * Make sure providers array is correct.
      * @param array $providers
@@ -134,11 +133,10 @@ final class oembed_test extends \advanced_testcase {
         $oembed = \testable_oembed::get_instance();
         $text = $oembed->html_output('https://youtu.be/abuQk-6M5R4');
         $this->assertStringContainsString('<div class="oembed-card-container oembed-responsive">', $text);
-        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed" style="(?:.*)" '.
+        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed" style="(?:.*)" ' .
             'data-embed="(?:.*)"(?:.*) data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
         $this->assertMatchesRegularExpression('/<div class="oembed-card-title">(?:.*)<\/div>/', $text);
         $this->assertStringContainsString('<button class="btn btn-link oembed-card-play" aria-label="Play"></button>', $text);
-
     }
 
     /**
@@ -244,7 +242,7 @@ final class oembed_test extends \advanced_testcase {
 
         try {
             $noaccess = $oembed->noaccess;
-            $this->fail('Coding error detected, it must be fixed by a programmer: noaccess is not a publicly '.
+            $this->fail('Coding error detected, it must be fixed by a programmer: noaccess is not a publicly ' .
                 'accessible property of testable_oembed');
         } catch (\Exception $e) {
             $this->assertInstanceOf('coding_exception', $e);

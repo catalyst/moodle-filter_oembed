@@ -30,7 +30,6 @@ use stdClass;
  * Abstract class for classes which map to db tables.
  */
 class abstract_dbrow {
-
     /**
      * anstract_dbrow constructor.
      * @param stdClass $row
@@ -49,7 +48,7 @@ class abstract_dbrow {
 
         foreach ($row as $key => $val) {
             if (!in_array($key, $vars)) {
-                throw new \coding_exception('Row model '.get_class($this).' is missing key '.$key);
+                throw new \coding_exception('Row model ' . get_class($this) . ' is missing key ' . $key);
             }
             $this->$key = $val;
         }

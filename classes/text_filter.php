@@ -34,7 +34,7 @@ defined('MOODLE_INTERNAL') || die();
 
 use filter_oembed\service\oembed;
 
-require_once($CFG->libdir.'/filelib.php');
+require_once($CFG->libdir . '/filelib.php');
 /**
  * Main filter class for embedded remote content.
  *
@@ -43,8 +43,6 @@ require_once($CFG->libdir.'/filelib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class text_filter extends \moodle_text_filter {
-
-
     /**
      * content gets filtered, links either wrapped in an <a> tag or in a <div> tag with class="oembed"
      * will be replaced by embeded content

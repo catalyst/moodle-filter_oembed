@@ -29,7 +29,6 @@ namespace filter_oembed\provider;
  * oEmbed provider implementation for o365video
  */
 class o365video extends provider {
-
     /**
      * Constructor.
      * @param string $data JSON decoded array or a data object containing all provider data.
@@ -67,7 +66,7 @@ class o365video extends provider {
             $odburl = preg_replace('/^https?:\/\//', '', $odburl);
             $odburl = preg_replace('/\/.*/', '', $odburl);
             $trimedurl = preg_replace("/-my/", "", $odburl);
-            $search = '/(https?:\/\/)('.$odburl.'|'.$trimedurl.')\/(.*)/is';
+            $search = '/(https?:\/\/)(' . $odburl . '|' . $trimedurl . ')\/(.*)/is';
             $newtext = preg_replace_callback($search, [$this, 'get_replacement'], $text);
         }
         return (empty($newtext) || ($newtext == $text)) ? false : $newtext;
@@ -120,8 +119,11 @@ class o365video extends provider {
                 }
             }
         } catch (\Exception $e) {
-            \local_o365\utils::debug('filter_oembed share point execption: '.$e->getMessage(),
-                'filter_oembed_o365videocallback', $e);
+            \local_o365\utils::debug(
+                'filter_oembed share point execption: ' . $e->getMessage(),
+                'filter_oembed_o365videocallback',
+                $e
+            );
         }
         return $matched[0];
     }

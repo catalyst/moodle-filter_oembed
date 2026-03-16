@@ -30,7 +30,6 @@ namespace filter_oembed\provider;
  * oEmbed provider implementation for Docs.com
  */
 class docsdotcom extends provider {
-
     /**
      * Constructor.
      * @param string $data JSON decoded array or a data object containing all provider data.
@@ -63,7 +62,7 @@ class docsdotcom extends provider {
         $regex = $this->endpoints_regex(new endpoint());
         if (preg_match($regex, $text, $matched)) {
             $params = [
-                'url' => $matched[1]. $matched[3] . '/' . $matched[4] . '/' . $matched[5] . '/' . $matched[6],
+                'url' => $matched[1] . $matched[3] . '/' . $matched[4] . '/' . $matched[5] . '/' . $matched[6],
                 'format' => 'json',
                 'maxwidth' => '600',
                 'maxheight' => '400',

@@ -33,7 +33,6 @@ namespace filter_oembed\output;
  * @copyright 2016 The POET Group
  */
 class renderer extends \plugin_renderer_base {
-
     /**
      * Pre loader HTML.
      *

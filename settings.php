@@ -26,8 +26,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once(__DIR__.'/filter.php');
-require_once($CFG->libdir.'/formslib.php');
+require_once(__DIR__ . '/filter.php');
+require_once($CFG->libdir . '/formslib.php');
 
 use filter_oembed\service\oembed;
 
@@ -57,7 +57,10 @@ if ($ADMIN->fulltree) {
 
 $ADMIN->add('filteroembedfolder', $settings);
 
-$ADMIN->add('filteroembedfolder', new admin_externalpage('filter_oembed_providers',
-    get_string('manageproviders', 'filter_oembed'), new moodle_url('/filter/oembed/manageproviders.php')));
+$ADMIN->add('filteroembedfolder', new admin_externalpage(
+    'filter_oembed_providers',
+    get_string('manageproviders', 'filter_oembed'),
+    new moodle_url('/filter/oembed/manageproviders.php')
+));
 
 $settings = null;

@@ -32,7 +32,6 @@ use filter_oembed\provider\provider;
  * A class that represents the management page.
  */
 class managementpage implements \renderable, \templatable {
-
     /**
      * An array of rows
      *
@@ -87,5 +86,4 @@ class managementpage implements \renderable, \templatable {
         }
         return $data;
     }
-
 }

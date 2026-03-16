@@ -24,18 +24,18 @@
  * oEmbed filter ( Mike Churchward, James McQuillan, Vinayak (Vin) Bhalerao, Josh Gavant and Rob Dolin)
  */
 
-$string['filtername'] = 'Embed Remote Content Filter';
-$string['cachelifespan_disabled'] = 'Cache Lebensdauer deaktiviert';
-$string['cachelifespan'] = 'Cache Lebensdauer';
-$string['cachelifespan_desc'] = 'Zeitabstand nach dem die Providerliste aktualisiert wird.';
-$string['cachelifespan_daily'] = '1 Tag';
-$string['cachelifespan_weekly'] = '1 Woche';
 $string['atag'] = 'Filtere &lt; a &gt; tags';
+$string['cachelifespan'] = 'Cache Lebensdauer';
+$string['cachelifespan_daily'] = '1 Tag';
+$string['cachelifespan_desc'] = 'Zeitabstand nach dem die Providerliste aktualisiert wird.';
+$string['cachelifespan_disabled'] = 'Cache Lebensdauer deaktiviert';
+$string['cachelifespan_weekly'] = '1 Woche';
+$string['connection_error'] = 'Fehler beim Zugriff auf die integrierten Medien. Versuchen Sie, die Seite zu aktualisieren.';
 $string['divtag'] = 'Filtere &lt; div &gt; tags';
-$string['targettag'] = 'Ziel tag';
-$string['targettag_desc'] = 'Welche Art von tag soll gefiltert werden? Links oder divs mit der oembed Klasse.';
-$string['providersrestrict'] = 'Providerbeschränkung';
-$string['providersrestrict_desc'] = 'Beschränke Provider mit einer List zugelassener Provider';
+$string['filtername'] = 'Embed Remote Content Filter';
 $string['providersallowed'] = 'Zugelassene Provider.';
 $string['providersallowed_desc'] = 'Die Provider die vor diese Moodleinstallation verfügbar sind.';
-$string['connection_error'] = 'Fehler beim Zugriff auf die integrierten Medien. Versuchen Sie, die Seite zu aktualisieren.';
+$string['providersrestrict'] = 'Providerbeschränkung';
+$string['providersrestrict_desc'] = 'Beschränke Provider mit einer List zugelassener Provider';
+$string['targettag'] = 'Ziel tag';
+$string['targettag_desc'] = 'Welche Art von tag soll gefiltert werden? Links oder divs mit der oembed Klasse.';

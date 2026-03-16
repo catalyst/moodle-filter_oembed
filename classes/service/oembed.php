@@ -31,7 +31,7 @@ use Exception;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->libdir.'/filelib.php');
+require_once($CFG->libdir . '/filelib.php');
 
 /**
  * Class oembed
@@ -41,7 +41,6 @@ require_once($CFG->libdir.'/filelib.php');
  * Singleton class providing function for filtering embedded content links in text.
  */
 class oembed {
-
     /**
      * @var array
      */
@@ -113,7 +112,7 @@ class oembed {
         $pluginprefix = provider::PROVIDER_SOURCE_PLUGIN;
         if (provider::source_type($provider->source) == $pluginprefix) {
             $name = substr($provider->source, strlen($pluginprefix));
-            require_once($CFG->dirroot.'/filter/oembed/provider/'.$name.'/'.$name.'.php');
+            require_once($CFG->dirroot . '/filter/oembed/provider/' . $name . '/' . $name . '.php');
             $classname = "\\filter_oembed\\provider\\{$name}";
             return new $classname($provider);
         } else {
@@ -184,7 +183,7 @@ class oembed {
                 $paramstr .= '&';
                 $paramstr .= $key . '=' . urlencode($val);
             }
-            $embed = str_replace('?feature=oembed', '?feature=oembed'.$paramstr, $embed);
+            $embed = str_replace('?feature=oembed', '?feature=oembed' . $paramstr, $embed);
         }
 
         $aspectratio = 0;
@@ -245,7 +244,7 @@ class oembed {
             }
 
             // This html is intentionally hardcoded and excluded from the mustache template as javascript relies on it.
-            $jsonarr['jshtml'] = ' data-aspect-ratio = "'.$aspectratio.'" ';
+            $jsonarr['jshtml'] = ' data-aspect-ratio = "' . $aspectratio . '" ';
         }
 
         return $renderer->preload($this->oembed_gethtml($jsonarr, $params), $jsonarr);
@@ -351,7 +350,7 @@ class oembed {
     protected static function get_local_providers() {
         global $CFG;
 
-        $ret = file_get_contents($CFG->dirroot.'/filter/oembed/provider/providers.json');
+        $ret = file_get_contents($CFG->dirroot . '/filter/oembed/provider/providers.json');
         return json_decode($ret, true);
     }
 
@@ -365,13 +364,13 @@ class oembed {
         global $CFG;
 
         $pluginproviders = [];
-        $path = $CFG->dirroot.'/filter/oembed/provider/';
+        $path = $CFG->dirroot . '/filter/oembed/provider/';
         $thisdir = new \DirectoryIterator($path);
         foreach ($thisdir as $dir) {
             if ($dir->isDir()) {
                 $name = $dir->getFilename();
                 if (($name != '.') && ($name != '..')) {
-                    require_once($CFG->dirroot.'/filter/oembed/provider/'.$name.'/'.$name.'.php');
+                    require_once($CFG->dirroot . '/filter/oembed/provider/' . $name . '/' . $name . '.php');
                     $classname = "\\filter_oembed\\provider\\{$name}";
                     $newplugin = new $classname();
                     $pluginproviders[] = array_merge($newplugin->implementation(), ['plugin' => $name]);
@@ -399,7 +398,7 @@ class oembed {
             if (empty($providers)) {
                 throw new \moodle_exception('No initial provider data available. Oembed filter will not function properly.');
             }
-            $source = provider::PROVIDER_SOURCE_LOCAL . $CFG->dirroot.'/filter/oembed/provider/providers.json';
+            $source = provider::PROVIDER_SOURCE_LOCAL . $CFG->dirroot . '/filter/oembed/provider/providers.json';
         }
 
         // Load each downloaded provider into the database.
@@ -451,12 +450,11 @@ class oembed {
                 }
 
                 if ($change) {
-                    mtrace('      updating '.$currprovider->providername);
+                    mtrace('      updating ' . $currprovider->providername);
                     $currprovider->timemodified = time();
                     $DB->update_record('filter_oembed', $currprovider);
                 }
                 unset($currentproviders[$currprovider->id]);
-
             } else {
                 // New provider.
                 $record = new \stdClass();
@@ -467,7 +465,7 @@ class oembed {
                 $record->enabled = 0;   // Disable everything by default.
                 $record->timecreated = time();
                 $record->timemodified = time();
-                mtrace('      creating '.$record->providername);
+                mtrace('      creating ' . $record->providername);
                 $DB->insert_record('filter_oembed', $record);
             }
         }
@@ -476,7 +474,7 @@ class oembed {
         foreach ($currentproviders as $providerdata) {
             if ($providerdata->source == $source) {
                 // Perform delete provider actions.
-                mtrace('      deleting '.$providerdata->providername);
+                mtrace('      deleting ' . $providerdata->providername);
                 $DB->delete_records('filter_oembed', ['id' => $providerdata->id]);
             }
         }
@@ -508,11 +506,11 @@ class oembed {
                 $record->providername = $provider['provider_name'];
                 $record->providerurl = $provider['provider_url'];
                 $record->endpoints = json_encode($provider['endpoints']);
-                $record->source = $source.$provider['plugin'];
+                $record->source = $source . $provider['plugin'];
                 $record->enabled = 1;   // Enable plugins by default.
                 $record->timecreated = time();
                 $record->timemodified = time();
-                mtrace('      creating '.$record->providername);
+                mtrace('      creating ' . $record->providername);
                 $DB->insert_record('filter_oembed', $record);
             }
         }
@@ -521,7 +519,7 @@ class oembed {
         foreach ($currentproviders as $providerdata) {
             if (provider::source_type($providerdata->source) == $source) {
                 // Perform delete provider actions.
-                mtrace('      deleting '.$providerdata->providername);
+                mtrace('      deleting ' . $providerdata->providername);
                 $DB->delete_records('filter_oembed', ['id' => $providerdata->id]);
             }
         }
@@ -570,7 +568,7 @@ class oembed {
         if (in_array($name, $allowed)) {
             return $this->$name;
         } else {
-            throw new \coding_exception($name.' is not a publicly accessible property of '.get_class($this));
+            throw new \coding_exception($name . ' is not a publicly accessible property of ' . get_class($this));
         }
     }
 

@@ -45,7 +45,6 @@ function xmldb_filter_oembed_upgrade($oldversion) {
     $dbman = $DB->get_manager();
 
     if ($oldversion < 2016070501) {
-
         // Define table filter_oembed to be created.
         $table = new xmldb_table('filter_oembed');
 
@@ -116,8 +115,10 @@ function xmldb_filter_oembed_upgrade($oldversion) {
                     'url' => $newprovider[3],
                 ];
                 $provider->endpoints = json_encode($endpoints);
-                if (($oldprovider == 'provider_powerbi_enabled') || ($oldprovider == 'provider_officeforms_enabled') ||
-                    ($oldprovider == 'o365video')) {
+                if (
+                    ($oldprovider == 'provider_powerbi_enabled') || ($oldprovider == 'provider_officeforms_enabled') ||
+                    ($oldprovider == 'o365video')
+                ) {
                     $provider->source = provider::PROVIDER_SOURCE_PLUGIN . $oldprovider;
                 } else {
                     $provider->source = provider::PROVIDER_SOURCE_LOCAL . 'oldoembed';

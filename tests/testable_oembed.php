@@ -32,7 +32,6 @@ use filter_oembed\service\oembed;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class testable_oembed extends oembed {
-
     /**
      * Singleton
      *
@@ -106,5 +105,4 @@ class testable_oembed extends oembed {
     public static function protected_get_all_provider_data($fields = '*') {
         return self::get_all_provider_data($fields);
     }
-
 }

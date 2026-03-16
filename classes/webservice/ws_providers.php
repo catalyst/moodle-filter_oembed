@@ -57,21 +57,27 @@ class ws_providers extends \external_api {
                     util::define_class_for_webservice('filter_oembed\output\providermodel'),
                     'Provider renderable',
                     VALUE_REQUIRED
-                ), 'Array of downloaded providers', VALUE_REQUIRED
+                ),
+                'Array of downloaded providers',
+                VALUE_REQUIRED
             ),
             'pluginrows' => new \external_multiple_structure(
                 new \external_single_structure(
                     util::define_class_for_webservice('filter_oembed\output\providermodel'),
                     'Provider renderable',
                     VALUE_REQUIRED
-                ), 'Array of plugin providers', VALUE_REQUIRED
+                ),
+                'Array of plugin providers',
+                VALUE_REQUIRED
             ),
             'localrows' => new \external_multiple_structure(
                 new \external_single_structure(
                     util::define_class_for_webservice('filter_oembed\output\providermodel'),
                     'Provider renderable',
                     VALUE_REQUIRED
-                ), 'Array of local providers', VALUE_REQUIRED
+                ),
+                'Array of local providers',
+                VALUE_REQUIRED
             ),
 
         ];

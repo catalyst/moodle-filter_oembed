@@ -62,10 +62,10 @@ class util {
             $haswsparamdoc = preg_match($regex, $comment, $matches);
             if ($haswsparamdoc === 1) {
                 if (!defined($matches[1])) {
-                    throw new coding_exception('Unknown / incompatible var type '.$matches[1].' for '.$name);
+                    throw new coding_exception('Unknown / incompatible var type ' . $matches[1] . ' for ' . $name);
                 }
                 if (count($matches) < 3) {
-                    throw new coding_exception('Missing description for '.$name);
+                    throw new coding_exception('Missing description for ' . $name);
                 }
                 $description = $matches[2];
                 $type = constant($matches[1]);
@@ -84,14 +84,14 @@ class util {
                     throw new coding_exception('Property without @var or @wsparam doc');
                 }
                 if (count($matches) < 3) {
-                    throw new coding_exception('Missing description for '.$name);
+                    throw new coding_exception('Missing description for ' . $name);
                 }
                 $description = $matches[2];
                 $type = $matches[1];
                 if (isset($aliases[$type])) {
                     $type = $aliases[$type];
                 } else {
-                    throw new coding_exception('Unknown / incompatible var type '.$type.' for '.$name);
+                    throw new coding_exception('Unknown / incompatible var type ' . $type . ' for ' . $name);
                 }
             }
 
@@ -99,7 +99,6 @@ class util {
             $required = preg_match($regex, $comment, $matches);
 
             $singlemembers[$name] = new external_value($type, $description, $required);
-
         }
 
         return $singlemembers;

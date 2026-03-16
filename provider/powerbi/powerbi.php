@@ -30,7 +30,6 @@ namespace filter_oembed\provider;
  * oEmbed provider implementation for Docs.com
  */
 class powerbi extends provider {
-
     /**
      * Constructor.
      * @param string $data JSON decoded array or a data object containing all provider data.
@@ -94,12 +93,12 @@ class powerbi extends provider {
                     $reportsdata = $powerbi->apicall('get', 'reports');
                     $embedurl = $powerbi->getreportoembedurl($matched[7], $reportsdata);
                     $embedhtml = $this->getembedhtml($embedurl);
-                    $embedhtml .= '<input type="hidden" class="token" value="' . $token->get_token(). '">';
+                    $embedhtml .= '<input type="hidden" class="token" value="' . $token->get_token() . '">';
                     return $embedhtml;
                 }
             }
         } catch (\Exception $e) {
-            \local_o365\utils::debug('filter_oembed oauth2 exeception: '.$e->getMessage(), 'filter_oembed_powerbicallback', $e);
+            \local_o365\utils::debug('filter_oembed oauth2 exeception: ' . $e->getMessage(), 'filter_oembed_powerbicallback', $e);
         }
         return $matched[0];
     }
@@ -111,7 +110,7 @@ class powerbi extends provider {
      * @return string
      */
     private function getembedhtml($embedurl) {
-        return '<iframe class="powerbi_iframe" src="'. $embedurl . '" '
+        return '<iframe class="powerbi_iframe" src="' . $embedurl . '" '
                 . 'height="768px" width="99%" frameborder="0" seamless></iframe>';
     }
 }

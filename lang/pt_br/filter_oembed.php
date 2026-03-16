@@ -25,15 +25,15 @@
  * Soundcloud (Troy Williams)
  */
 
-$string['filtername'] = 'Filtro oEmbed';
-$string['youtube'] = 'YouTube';
-$string['vimeo'] = 'Vimeo';
-$string['ted'] = 'Ted Talks';
-$string['slideshare'] = 'SlideShare';
-$string['officemix'] = 'Office Mix';
-$string['issuu'] = 'Issuu';
-$string['screenr'] = 'Screenr';
-$string['soundcloud'] = 'SoundCloud';
-$string['pollev'] = 'Poll Everywhere';
-$string['lazyload'] = 'Carregamento de incorporação com atraso (Lazy load)';
 $string['connection_error'] = 'Erro ao acessar a mídia incorporada. Tente atualizar a página.';
+$string['filtername'] = 'Filtro oEmbed';
+$string['issuu'] = 'Issuu';
+$string['lazyload'] = 'Carregamento de incorporação com atraso (Lazy load)';
+$string['officemix'] = 'Office Mix';
+$string['pollev'] = 'Poll Everywhere';
+$string['screenr'] = 'Screenr';
+$string['slideshare'] = 'SlideShare';
+$string['soundcloud'] = 'SoundCloud';
+$string['ted'] = 'Ted Talks';
+$string['vimeo'] = 'Vimeo';
+$string['youtube'] = 'YouTube';

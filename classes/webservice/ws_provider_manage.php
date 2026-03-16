@@ -99,6 +99,6 @@ class ws_provider_manage extends \external_api {
             ];
         }
 
-        throw new coding_exception('Invalid action - '.$action);
+        throw new coding_exception('Invalid action - ' . $action);
     }
 }

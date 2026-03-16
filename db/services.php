@@ -43,4 +43,3 @@ $functions = [
         'loginrequired' => true,
     ],
 ];
-

@@ -30,4 +30,3 @@ $definitions = [
         'ttl' => HOURSECS,
     ],
 ];
-

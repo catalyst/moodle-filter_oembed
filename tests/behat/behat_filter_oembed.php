@@ -33,7 +33,6 @@ require_once(__DIR__ . '/../../../../lib/behat/behat_base.php');
  * @package    filter_oembed
  */
 class behat_filter_oembed extends behat_base {
-
     /**
      * Get provider action xpath for specific provider and action.
      * @param string $provider
@@ -41,8 +40,8 @@ class behat_filter_oembed extends behat_base {
      * @return string
      */
     protected function provider_action_xpath($provider, $actionclass) {
-        $xpath = '//td/a[text()=\'' . $provider.'\']';
-        $xpath .= '/parent::td/div/a[contains(@class,\''.$actionclass.'\')]';
+        $xpath = '//td/a[text()=\'' . $provider . '\']';
+        $xpath .= '/parent::td/div/a[contains(@class,\'' . $actionclass . '\')]';
         return $xpath;
     }
 
@@ -85,7 +84,7 @@ class behat_filter_oembed extends behat_base {
     protected function ensure_provider_status($provider, $enabled = true) {
         $action = $enabled ? 'disable' : 'enable';
         $xpath = $this->provider_action_xpath($provider, 'filter-oembed-visibility');
-        $xpath = substr($xpath, 0, -1) . 'and contains(@href,"action='.$action.'")]';
+        $xpath = substr($xpath, 0, -1) . 'and contains(@href,"action=' . $action . '")]';
         $this->ensure_element_exists($xpath, 'xpath_element');
     }
 
@@ -131,7 +130,7 @@ class behat_filter_oembed extends behat_base {
      * @return string
      */
     protected function edit_form_xpath($provider) {
-        $xpath = '//td/a[text()=\'' . $provider.'\']';
+        $xpath = '//td/a[text()=\'' . $provider . '\']';
         $xpath .= '/parent::td/div[contains(@class,\'oembed-provider-details\')]/form';
         return $xpath;
     }
@@ -164,15 +163,13 @@ class behat_filter_oembed extends behat_base {
 
         // Field setting code taken from behat_admin.php.
         foreach ($data as $label => $value) {
-
             $fieldxpath = $this->edit_form_xpath($provider);
-            $fieldxpath .= '//label[contains(text(),\''.$label.'\')]';
+            $fieldxpath .= '//label[contains(text(),\'' . $label . '\')]';
             $fieldxpath .= '/parent::div/parent::div/div[contains(@class, \'felement\')]/*';
 
             $formhelper->i_set_the_field_with_xpath_to($fieldxpath, $value);
 
             $this->find_button(get_string('saveasnew', 'filter_oembed'))->press();
         }
-
     }
 }

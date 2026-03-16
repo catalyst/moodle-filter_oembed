@@ -39,7 +39,6 @@ require_once($CFG->dirroot . '/filter/oembed/filter.php');
  * @group filter_oembed
  */
 final class filter_test extends \advanced_testcase {
-
     /** @var object The filter plugin object to perform the tests on */
     protected $filter;
 
@@ -53,7 +52,6 @@ final class filter_test extends \advanced_testcase {
         $oembed = \filter_oembed\service\oembed::get_instance('all');
         foreach ($oembed->providers as $pid => $provider) {
             switch ($provider->providername) {
-
                 case 'YouTube':
                     $oembed->enable_provider($pid);
                     break;
@@ -129,15 +127,15 @@ final class filter_test extends \advanced_testcase {
         $polleverywherelink = '<p><a href="https://www.polleverywhere.com/multiple_choice_polls/AyCp2jkJ2HqYKXc/web">';
         $polleverywherelink .= '$popolleverywhere</a></p>';
 
-        $filterinput = $soundcloudlink.$youtubelink.$vimeolink.$tedlink.$slidesharelink.$issuulink.$polleverywherelink;
+        $filterinput = $soundcloudlink . $youtubelink . $vimeolink . $tedlink . $slidesharelink . $issuulink . $polleverywherelink;
 
         $filteroutput = $this->filter->filter($filterinput);
 
         $youtubeoutput = '/.*<iframe .*src="https:\/\/www\.youtube\.com\/embed\/abuQk-6M5R4\?feature=oembed.*"/';
         $this->assertMatchesRegularExpression($youtubeoutput, $filteroutput, 'Youtube filter fails');
 
-        $soundcloudoutput = '/.*<iframe .*src="https:\/\/w\.soundcloud\.com\/player\/'.
-                            '\?visual=true&url=https%3A%2F%2Fapi\.soundcloud\.com'.
+        $soundcloudoutput = '/.*<iframe .*src="https:\/\/w\.soundcloud\.com\/player\/' .
+                            '\?visual=true&url=https%3A%2F%2Fapi\.soundcloud\.com' .
                             '%2Ftracks%2F293&show_artwork=true".*/';
         $this->assertMatchesRegularExpression($soundcloudoutput, $filteroutput, 'Soundcloud filter fails');
 
@@ -147,8 +145,8 @@ final class filter_test extends \advanced_testcase {
         $tedoutput = '/.*<a href="https:\/\/ted\.com\/talks\/aj_jacobs_how_healthy_living_nearly_killed_me".*/';
         $this->assertMatchesRegularExpression($tedoutput, $filteroutput, 'Ted filter fails');
 
-        $polleverywhereoutput = '/.*<script src="https:\/\/www\.polleverywhere\.com\/'.
-                                'multiple_choice_polls\/AyCp2jkJ2HqYKXc\/web\.js'.
+        $polleverywhereoutput = '/.*<script src="https:\/\/www\.polleverywhere\.com\/' .
+                                'multiple_choice_polls\/AyCp2jkJ2HqYKXc\/web\.js' .
                                 '\?results_count_format=percent"><\/script>.*/';
         $this->assertMatchesRegularExpression($polleverywhereoutput, $filteroutput, 'Poll everywhare filter fails');
 

@@ -62,10 +62,17 @@ function filter_oembed_output_fragment_provider($args) {
     if (!isset($ajaxdata['enabled'])) {
         $ajaxdata['enabled'] = 0;
     }
-    $actionurl = $CFG->wwwroot.'/filter/oembed/manageproviders.php';
+    $actionurl = $CFG->wwwroot . '/filter/oembed/manageproviders.php';
     // Pass the source type as custom data so it can by used to detetmine the type of edit.
-    $form = new provider($actionurl, \filter_oembed\provider\provider::source_type($data['source']),
-        'post', '', null, true, $ajaxdata);
+    $form = new provider(
+        $actionurl,
+        \filter_oembed\provider\provider::source_type($data['source']),
+        'post',
+        '',
+        null,
+        true,
+        $ajaxdata
+    );
     $form->validate_defined_fields(true);
     $data['sourcetext'] = $data['source'];
     $form->set_data($data);
@@ -78,13 +85,17 @@ function filter_oembed_output_fragment_provider($args) {
             if ($sourcetype == \filter_oembed\provider\provider::PROVIDER_SOURCE_DOWNLOAD) {
                 $newpid = $oembed->copy_provider_to_local($ajaxdata);
                 if ($newpid) {
-                    $msg = $output->notification(get_string('copytolocal', 'filter_oembed', $ajaxdata['providername']),
-                        'notifysuccess');
+                    $msg = $output->notification(
+                        get_string('copytolocal', 'filter_oembed', $ajaxdata['providername']),
+                        'notifysuccess'
+                    );
                     // Return an empty div with the new provider id in it so we can target it later with the message in $msg.
-                    return '<div class="js-oembed-newprovider" data-newproviderid = "'.$newpid.'"></div>'.$msg;
+                    return '<div class="js-oembed-newprovider" data-newproviderid = "' . $newpid . '"></div>' . $msg;
                 } else {
-                    $msg = $output->notification(get_string('nocopytolocal', 'filter_oembed', $ajaxdata['providername']),
-                        'notifyproblem');
+                    $msg = $output->notification(
+                        get_string('nocopytolocal', 'filter_oembed', $ajaxdata['providername']),
+                        'notifyproblem'
+                    );
                 }
             } else {
                 $success = $oembed->update_provider_row($ajaxdata);
@@ -96,5 +107,5 @@ function filter_oembed_output_fragment_provider($args) {
             }
         }
     }
-    return $form->render().$msg;
+    return $form->render() . $msg;
 }

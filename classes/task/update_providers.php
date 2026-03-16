@@ -31,7 +31,6 @@ use filter_oembed\service\oembed;
  * Update oEmbed providers class
  */
 class update_providers extends \core\task\scheduled_task {
-
     /**
      * Get a descriptive name for this task (shown to admins).
      *
@@ -47,5 +46,4 @@ class update_providers extends \core\task\scheduled_task {
     public function execute() {
         oembed::update_provider_data();
     }
-
 }

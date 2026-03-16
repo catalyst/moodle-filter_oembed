@@ -35,7 +35,6 @@ namespace filter_oembed\provider;
  * @copyright 2016 The POET Group
  */
 class provider {
-
     /**
      * @var int
      */
@@ -107,7 +106,7 @@ class provider {
                     $this->endpoints[] = new endpoint($endpoint);
                 }
             } else {
-                throw new \coding_exception('"endpoint" data must be an array for '.get_class($this));
+                throw new \coding_exception('"endpoint" data must be an array for ' . get_class($this));
             }
 
             $this->source = isset($data['source']) ? $data['source'] : '';
@@ -253,7 +252,7 @@ class provider {
         if (in_array($name, $allowed)) {
             return $this->$name;
         } else {
-            throw new \coding_exception($name.' is not a publicly accessible property of '.get_class($this));
+            throw new \coding_exception($name . ' is not a publicly accessible property of ' . get_class($this));
         }
     }
 

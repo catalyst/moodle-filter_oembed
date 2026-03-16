@@ -84,7 +84,7 @@ class endpoint {
         if (in_array($name, $allowed)) {
             return $this->$name;
         } else {
-            throw new \coding_exception($name.' is not a publicly accessible property of '.get_class($this));
+            throw new \coding_exception($name . ' is not a publicly accessible property of ' . get_class($this));
         }
     }
 }

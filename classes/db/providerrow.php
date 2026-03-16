@@ -68,5 +68,4 @@ class providerrow extends abstract_dbrow {
      * @var int time modified
      */
     public $timemodified;
-
 }
