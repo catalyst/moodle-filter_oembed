@@ -41,6 +41,7 @@ function filter_oembed_output_fragment_provider($args) {
 
     $data = null;
     $ajaxdata = null;
+    $isnew = false;
     if (!empty($args['formdata'])) {
         $data = [];
         parse_str($args['formdata'], $data);
@@ -50,6 +51,17 @@ function filter_oembed_output_fragment_provider($args) {
     } else {
         if (!isset($args['pid'])) {
             throw new coding_exception('missing "pid" param');
+        } else if ($args['pid'] === 'new' || $args['pid'] === 0 || $args['pid'] === '0') {
+            // Creating a new provider.
+            $isnew = true;
+            $data = [
+                'providername' => '',
+                'providerurl' => '',
+                'endpoints' => '',
+                'enabled' => 1,
+                'rendermode' => 'server',
+                'source' => 'local::new',
+            ];
         } else {
             $data = $oembed->get_provider_row($args['pid']);
             if (!$data) {
@@ -80,29 +92,36 @@ function filter_oembed_output_fragment_provider($args) {
     $msg = '';
     if (!empty($ajaxdata)) {
         if ($form->is_validated()) {
-            // If editing a downloaded provider, create a new local one and disable the download one.
-            $sourcetype = \filter_oembed\provider\provider::source_type($ajaxdata['source']);
-            if ($sourcetype == \filter_oembed\provider\provider::PROVIDER_SOURCE_DOWNLOAD) {
-                $newpid = $oembed->copy_provider_to_local($ajaxdata);
+            // Check if this is a new provider being created.
+            if ($ajaxdata['source'] === 'local::new' || empty($ajaxdata['id'])) {
+                $newpid = $oembed->create_local_provider($ajaxdata);
                 if ($newpid) {
-                    $msg = $output->notification(
-                        get_string('copytolocal', 'filter_oembed', $ajaxdata['providername']),
-                        'notifysuccess'
-                    );
-                    // Return an empty div with the new provider id in it so we can target it later with the message in $msg.
+                    $msg = $output->notification(get_string('saveok', 'filter_oembed'), 'notifysuccess');
                     return '<div class="js-oembed-newprovider" data-newproviderid = "' . $newpid . '"></div>' . $msg;
                 } else {
-                    $msg = $output->notification(
-                        get_string('nocopytolocal', 'filter_oembed', $ajaxdata['providername']),
-                        'notifyproblem'
-                    );
+                    $msg = $output->notification(get_string('savefailed', 'filter_oembed'), 'notifyproblem');
                 }
             } else {
-                $success = $oembed->update_provider_row($ajaxdata);
-                if ($success) {
-                    $msg = $output->notification(get_string('saveok', 'filter_oembed'), 'notifysuccess');
+                // If editing a downloaded provider, create a new local one and disable the download one.
+                $sourcetype = \filter_oembed\provider\provider::source_type($ajaxdata['source']);
+                if ($sourcetype == \filter_oembed\provider\provider::PROVIDER_SOURCE_DOWNLOAD) {
+                    $newpid = $oembed->copy_provider_to_local($ajaxdata);
+                    if ($newpid) {
+                        $msg = $output->notification(get_string('copytolocal', 'filter_oembed', $ajaxdata['providername']),
+                            'notifysuccess');
+                        // Return an empty div with the new provider id in it so we can target it later with the message in $msg.
+                        return '<div class="js-oembed-newprovider" data-newproviderid = "'.$newpid.'"></div>'.$msg;
+                    } else {
+                        $msg = $output->notification(get_string('nocopytolocal', 'filter_oembed', $ajaxdata['providername']),
+                            'notifyproblem');
+                    }
                 } else {
-                    $msg = $output->notification(get_string('savefailed', 'filter_oembed'), 'notifyproblem');
+                    $success = $oembed->update_provider_row($ajaxdata);
+                    if ($success) {
+                        $msg = $output->notification(get_string('saveok', 'filter_oembed'), 'notifysuccess');
+                    } else {
+                        $msg = $output->notification(get_string('savefailed', 'filter_oembed'), 'notifyproblem');
+                    }
                 }
             }
         }

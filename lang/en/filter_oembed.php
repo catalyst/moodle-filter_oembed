@@ -24,6 +24,7 @@
  * oEmbed filter ( Mike Churchward, James McQuillan, Vinayak (Vin) Bhalerao, Josh Gavant and Rob Dolin)
  */
 
+$string['addnewlocalprovider'] = 'Add new local provider';
 $string['atag'] = 'Filter on &lt; a &gt; tags';
 $string['cachedef_embeddata'] = 'oEmbed Cache';
 $string['cachelifespan'] = 'Cache lifespan';

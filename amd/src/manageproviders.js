@@ -262,11 +262,13 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates', 'core/frag
                             turnEditingOff(pid);
 
                             // Get new provider id and set pid to it so correct row is targeted on reload.
-                            if (source.indexOf('download::') > -1) {
+                            var isNewProvider = false;
+                            if (source.indexOf('download::') > -1 || source.indexOf('local::new') > -1) {
                                 var newProviderSel = detailsSel + ' .js-oembed-newprovider';
                                 var newProviderEl = $(newProviderSel);
                                 if (newProviderEl.length) {
                                     pid = newProviderEl.data('newproviderid');
+                                    isNewProvider = true;
                                 }
                             }
 
@@ -282,9 +284,9 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates', 'core/frag
                                 $('#providermanagement div.alert-success').focus();
                             };
 
-                            if (source.indexOf('download::') > -1) {
-                                // When a downloaded provider is saved, a new one is created as a local provider, so we
-                                // need to reload the full list.
+                            if (source.indexOf('download::') > -1 || isNewProvider) {
+                                // When a downloaded provider is saved or a new provider is created,
+                                // a new one is created as a local provider, so we need to reload the full list.
                                 self.reloadProviders(onReload);
                             } else {
                                 self.reloadRow(pid, row, 'reload', onReload);
@@ -302,6 +304,56 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates', 'core/frag
             },
 
             /**
+             * Listen for add new provider button.
+             */
+            listenAddProvider: function() {
+                var self = this;
+
+                $('#oembed-add-provider').on('click', function(e) {
+                    e.preventDefault();
+
+                    // Turn off any existing editing.
+                    if (self.prevEditId !== null) {
+                        var sel = '#oembed-display-providers_' + self.prevEditId;
+                        $(sel).removeClass('oembed-provider-editing');
+                        $(sel + ' form').remove();
+                        $(sel + ' td div.alert').remove();
+                    }
+
+                    // Create a temporary row for the new provider form.
+                    var newRowId = 'oembed-display-providers_0';
+                    var existingNewRow = $('#' + newRowId);
+                    if (existingNewRow.length) {
+                        existingNewRow.remove();
+                    }
+
+                    var newRow = '<tr id="' + newRowId + '" class="oembed-provider-editing" data-pid="0">' +
+                        '<td colspan="3" class="cell c0 provider">' +
+                        '<div class="oembed-provider-details"></div>' +
+                        '</td></tr>';
+
+                    $('#oembed-local-providers-head-row').after(newRow);
+
+                    self.prevEditId = 0;
+
+                    // Load the form fragment for a new provider.
+                    var rx = new RegExp('(?:course-)(\\S)');
+                    var result = rx.exec($('body').attr('class'));
+                    var contextid = parseInt(result[1]);
+
+                    fragment.loadFragment('filter_oembed', 'provider', contextid, {pid: 0}).done(
+                        function(html, js) {
+                            templates.replaceNodeContents(
+                                $('#' + newRowId + ' .oembed-provider-details'),
+                                html,
+                                js
+                            );
+                        }
+                    );
+                });
+            },
+
+            /**
              * Initialise.
              */
             init: function() {
@@ -314,6 +366,7 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates', 'core/frag
                 this.listenEnableDisable();
                 this.listenDelete();
                 this.listenEdit();
+                this.listenAddProvider();
             }
         };
     }

@@ -667,6 +667,25 @@ class oembed {
     }
 
     /**
+     * Create a new local provider.
+     * @param array|object $providerdata
+     * @return bool|int
+     */
+    public function create_local_provider($providerdata) {
+        global $DB;
+        $providerdata = (array)$providerdata;
+        $newsource = provider::PROVIDER_SOURCE_LOCAL . strtolower(str_replace(' ', '', $providerdata['providername']));
+        if ($DB->record_exists('filter_oembed', ['source' => $newsource])) {
+            return false;
+        }
+        $providerdata['source'] = $newsource;
+        $providerdata['timecreated'] = time();
+        $providerdata['timemodified'] = time();
+        unset($providerdata['id']); // Ensure no id is set for new record.
+        return $DB->insert_record('filter_oembed', $providerdata, true);
+    }
+
+    /**
      * Copy downloaded provider row to new local row (or update).
      * @param array|object $providerdata
      * @return bool|int
