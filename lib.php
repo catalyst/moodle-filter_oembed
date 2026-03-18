@@ -107,13 +107,17 @@ function filter_oembed_output_fragment_provider($args) {
                 if ($sourcetype == \filter_oembed\provider\provider::PROVIDER_SOURCE_DOWNLOAD) {
                     $newpid = $oembed->copy_provider_to_local($ajaxdata);
                     if ($newpid) {
-                        $msg = $output->notification(get_string('copytolocal', 'filter_oembed', $ajaxdata['providername']),
-                            'notifysuccess');
+                        $msg = $output->notification(
+                            get_string('copytolocal', 'filter_oembed', $ajaxdata['providername']),
+                            'notifysuccess'
+                        );
                         // Return an empty div with the new provider id in it so we can target it later with the message in $msg.
-                        return '<div class="js-oembed-newprovider" data-newproviderid = "'.$newpid.'"></div>'.$msg;
+                        return '<div class="js-oembed-newprovider" data-newproviderid = "' . $newpid . '"></div>' . $msg;
                     } else {
-                        $msg = $output->notification(get_string('nocopytolocal', 'filter_oembed', $ajaxdata['providername']),
-                            'notifyproblem');
+                        $msg = $output->notification(
+                            get_string('nocopytolocal', 'filter_oembed', $ajaxdata['providername']),
+                            'notifyproblem'
+                        );
                     }
                 } else {
                     $success = $oembed->update_provider_row($ajaxdata);

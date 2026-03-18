@@ -83,7 +83,11 @@ class provider extends moodleform {
             }
 
             if ($fieldname === 'endpoints') {
-                $el->updateAttributes(['style' => 'font-family: monospace; white-space: pre-wrap; width: 100%;', 'rows' => '10', 'cols' => '80']);
+                $el->updateAttributes([
+                    'style' => 'font-family: monospace; white-space: pre-wrap; width: 100%;',
+                    'rows' => '10',
+                    'cols' => '80',
+                ]);
             }
 
             if (!empty($commonattributes)) {
