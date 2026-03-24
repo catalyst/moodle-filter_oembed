@@ -49,41 +49,43 @@ Displayed if x was true.
 {{/x}}
 <div id="providermanagement">
     <table id="oembedproviders" class="flexible generaltable generalbox" style="border-spacing: 0px;">
-          <thead>
+        <thead>
             <tr>
-              <th class="header c0 provider" scope="col"><input class="search" placeholder="{{#str}}provider, filter_oembed{{/str}}" /></th>
-              <th class="header c1 providerurl" scope="col">{{#str}}providerurl, filter_oembed{{/str}}</th>
-              <th class="header c2 actions" scope="col"></th>
+                <th class="header c0 provider" scope="col">
+                    <input class="search" placeholder="{{#str}}provider, filter_oembed{{/str}}">
+                </th>
+                <th class="header c1 providerurl" scope="col">{{#str}}providerurl, filter_oembed{{/str}}</th>
+                <th class="header c2 actions" scope="col"></th>
             </tr>
-          </thead>
-          <tbody class="list">
+        </thead>
+        <tbody class="list">
             <tr id="oembed-local-providers-head-row" class="oembed-local-providers">
                 <th id="oembed-local-providers-head" colspan="3">
-                  {{#str}}localproviders, filter_oembed{{/str}}
-                  <button type="button" class="btn btn-secondary btn-sm float-right" id="oembed-add-provider">
-                    {{#str}}addnewlocalprovider, filter_oembed{{/str}}
-                  </button>
+                    {{#str}}localproviders, filter_oembed{{/str}}
+                    <button type="button" class="btn btn-secondary btn-sm float-right" id="oembed-add-provider">
+                        {{#str}}addnewlocalprovider, filter_oembed{{/str}}
+                    </button>
                 </th>
             </tr>
-          {{#localrows}}
-              {{> filter_oembed/managementpagerow}}
-          {{/localrows}}
+            {{#localrows}}
+                {{> filter_oembed/managementpagerow}}
+            {{/localrows}}
             <tr id="oembed-plugin-providers-head-row" class="oembed-plugin-providers">
                 <th id="oembed-plugin-providers-head" colspan="3">
-                  {{#str}}pluginproviders, filter_oembed{{/str}}
+                    {{#str}}pluginproviders, filter_oembed{{/str}}
                 </th>
             </tr>
-          {{#pluginrows}}
-              {{> filter_oembed/managementpagerow}}
-          {{/pluginrows}}
+            {{#pluginrows}}
+                {{> filter_oembed/managementpagerow}}
+            {{/pluginrows}}
             <tr id="oembed-download-providers-head-row" class="oembed-download-providers">
                 <th id="oembed-download-providers-head" colspan="3">
                   {{#str}}downloadproviders, filter_oembed{{/str}}
                 </th>
             </tr>
-          {{#downloadrows}}
-              {{> filter_oembed/managementpagerow}}
-          {{/downloadrows}}
-          </tbody>
+            {{#downloadrows}}
+                {{> filter_oembed/managementpagerow}}
+            {{/downloadrows}}
+        </tbody>
     </table>
 </div>
