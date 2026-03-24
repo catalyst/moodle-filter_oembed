@@ -60,6 +60,11 @@ class providerrow extends abstract_dbrow {
     public $enabled;
 
     /**
+     * @var str render mode
+     */
+    public $rendermode;
+
+    /**
      * @var int time created
      */
     public $timecreated;

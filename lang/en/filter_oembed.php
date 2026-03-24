@@ -24,6 +24,7 @@
  * oEmbed filter ( Mike Churchward, James McQuillan, Vinayak (Vin) Bhalerao, Josh Gavant and Rob Dolin)
  */
 
+$string['addnewlocalprovider'] = 'Add new local provider';
 $string['atag'] = 'Filter on &lt; a &gt; tags';
 $string['cachedef_embeddata'] = 'oEmbed Cache';
 $string['cachelifespan'] = 'Cache lifespan';
@@ -55,6 +56,9 @@ $string['providersallowed_desc'] = 'Providers whitelisted to be used with this p
 $string['providersrestrict'] = 'Restrict providers';
 $string['providersrestrict_desc'] = 'Restrict providers to a list of allowed providers';
 $string['providerurl'] = 'Provider URL';
+$string['rendermode'] = 'Render mode';
+$string['rendermode_client'] = 'Client';
+$string['rendermode_server'] = 'Server';
 $string['requiredfield'] = 'The field "{$a}" must be completed';
 $string['saveasnew'] = 'Save as new local';
 $string['savefailed'] = 'Failed to save provider.';
