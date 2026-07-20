@@ -74,6 +74,7 @@ class provider extends moodleform {
                     'client' => get_string('rendermode_client', 'filter_oembed'),
                 ];
                 $el = $mform->addElement($row->type, $fieldname, $fieldlabel, $options);
+                $mform->addHelpButton($fieldname, $fieldname, 'filter_oembed');
             } else {
                 $el = $mform->addElement($row->type, $fieldname, $fieldlabel);
             }

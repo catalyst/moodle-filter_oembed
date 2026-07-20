@@ -48,6 +48,9 @@ define(['jquery', 'core/log'], function($, Log) {
             $.ajax({
                 url: oembedUrl,
                 dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
                 success: function(data) {
                     if (data && data.html) {
                         var embed = data.html;

@@ -57,6 +57,7 @@ $string['providersrestrict'] = 'Restrict providers';
 $string['providersrestrict_desc'] = 'Restrict providers to a list of allowed providers';
 $string['providerurl'] = 'Provider URL';
 $string['rendermode'] = 'Render mode';
+$string['rendermode_help'] = 'Choose how oEmbed content is loaded. In client mode, the browser requests oEmbed content directly and sends credentials (such as cookies) with the request.';
 $string['rendermode_client'] = 'Client';
 $string['rendermode_server'] = 'Server';
 $string['requiredfield'] = 'The field "{$a}" must be completed';
