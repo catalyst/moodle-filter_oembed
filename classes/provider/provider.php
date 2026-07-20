@@ -71,6 +71,11 @@ class provider {
     protected $rendermode = 'server';
 
     /**
+     * @var bool include credentials in client-side requests
+     */
+    protected $withcredentials = 0;
+
+    /**
      * @var Class constant descriptio for local.
      */
     const PROVIDER_SOURCE_LOCAL = 'local::';
@@ -116,6 +121,7 @@ class provider {
 
             $this->source = isset($data['source']) ? $data['source'] : '';
             $this->rendermode = isset($data['rendermode']) ? $data['rendermode'] : 'server';
+            $this->withcredentials = isset($data['withcredentials']) ? $data['withcredentials'] : 0;
         }
     }
 
@@ -254,7 +260,7 @@ class provider {
      * @throws \coding_exception
      */
     public function __get($name) {
-        $allowed = ['id', 'enabled', 'providername', 'providerurl', 'endpoints', 'source', 'rendermode'];
+        $allowed = ['id', 'enabled', 'providername', 'providerurl', 'endpoints', 'source', 'rendermode', 'withcredentials'];
         if (in_array($name, $allowed)) {
             return $this->$name;
         } else {

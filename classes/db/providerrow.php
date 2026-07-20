@@ -65,6 +65,11 @@ class providerrow extends abstract_dbrow {
     public $rendermode;
 
     /**
+     * @var bool include credentials in client-side requests
+     */
+    public $withcredentials;
+
+    /**
      * @var int time created
      */
     public $timecreated;

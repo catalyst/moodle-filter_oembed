@@ -149,7 +149,7 @@ class oembed {
                 // Check if this provider uses client-side rendering.
                 if ($provider->rendermode === 'client') {
                     $PAGE->requires->js_call_amd('filter_oembed/clientrender', 'init');
-                    $output = $this->oembed_getclienthtml($requesturl, $text, $params);
+                    $output = $this->oembed_getclienthtml($provider, $requesturl, $text, $params);
                 } else {
                     // Server-side rendering.
                     $jsonret = $provider->oembed_response($requesturl);
@@ -170,17 +170,20 @@ class oembed {
     /**
      * Get client-side rendering placeholder html.
      *
+     * @param provider $provider The provider used for this embed.
      * @param string $requesturl The oembed request URL.
      * @param string $originalurl The original URL being embedded.
      * @param array $params Additional URL parameters.
      * @return string
      */
-    protected function oembed_getclienthtml($requesturl, $originalurl, $params = []) {
+    protected function oembed_getclienthtml(provider $provider, $requesturl, $originalurl, $params = []) {
         $paramsdata = !empty($params) ? htmlspecialchars(json_encode($params), ENT_QUOTES, 'UTF-8') : '';
+        $withcredentials = !empty($provider->withcredentials);
         $output = '<div class="oembed-client-render" ' .
                   'data-oembed-url="' . htmlspecialchars($requesturl, ENT_QUOTES, 'UTF-8') . '" ' .
                   'data-original-url="' . htmlspecialchars($originalurl, ENT_QUOTES, 'UTF-8') . '" ' .
-                  ($paramsdata ? 'data-params="' . $paramsdata . '"' : '') . '>' .
+                  ($paramsdata ? 'data-params="' . $paramsdata . '" ' : '') .
+                  'data-with-credentials="' . ($withcredentials ? '1' : '0') . '">' .
                   '<div class="oembed-loading">Loading...</div>' .
                   '</div>';
         return $output;

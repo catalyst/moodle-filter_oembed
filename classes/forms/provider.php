@@ -48,6 +48,7 @@ class provider extends moodleform {
             'endpoints'    => ['required' => true, 'type' => 'textarea', 'paramtype' => PARAM_TEXT],
             'enabled'      => ['required' => false, 'type' => 'checkbox', 'paramtype' => PARAM_INT],
             'rendermode'   => ['required' => false, 'type' => 'select', 'paramtype' => PARAM_TEXT],
+            'withcredentials' => ['required' => false, 'type' => 'checkbox', 'paramtype' => PARAM_INT],
             'source'       => ['required' => true, 'type' => 'hidden', 'paramtype' => PARAM_TEXT],
         ];
 

@@ -60,6 +60,7 @@ function filter_oembed_output_fragment_provider($args) {
                 'endpoints' => '',
                 'enabled' => 1,
                 'rendermode' => 'server',
+                'withcredentials' => 0,
                 'source' => 'local::new',
             ];
         } else {
@@ -71,8 +72,14 @@ function filter_oembed_output_fragment_provider($args) {
         }
     }
 
+    if (!is_array($ajaxdata)) {
+        $ajaxdata = [];
+    }
     if (!isset($ajaxdata['enabled'])) {
         $ajaxdata['enabled'] = 0;
+    }
+    if (!isset($ajaxdata['withcredentials'])) {
+        $ajaxdata['withcredentials'] = 0;
     }
     $actionurl = $CFG->wwwroot . '/filter/oembed/manageproviders.php';
     // Pass the source type as custom data so it can by used to detetmine the type of edit.

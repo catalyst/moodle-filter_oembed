@@ -38,16 +38,20 @@ define(['jquery', 'core/log'], function($, Log) {
             var oembedUrl = $container.data('oembed-url');
             var originalUrl = $container.data('original-url');
             var params = $container.data('params');
-            
+            var withCredentials = $container.data('with-credentials') === 1;
+
             if (!oembedUrl) {
                 Log.debug('filter_oembed/clientrender: No oembed URL provided');
                 $container.html('<a href="' + originalUrl + '">' + originalUrl + '</a>');
                 return;
             }
-            
+
             $.ajax({
                 url: oembedUrl,
                 dataType: 'json',
+                xhrFields: {
+                    withCredentials: withCredentials
+                },
                 success: function(data) {
                     if (data && data.html) {
                         var embed = data.html;

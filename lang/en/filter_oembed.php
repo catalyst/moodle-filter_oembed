@@ -69,3 +69,4 @@ $string['subplugintype_oEmbedprovider_plural'] = 'oEmbed providers';
 $string['targettag'] = 'Target tag';
 $string['targettag_desc'] = 'What tag type should be filtered - anchors or divs with the oEmbed class.';
 $string['updateproviders'] = 'Update oEmbed provider information.';
+$string['withcredentials'] = 'Include credentials in client-side requests. Only valid for client side embeds.';

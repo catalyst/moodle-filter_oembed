@@ -156,5 +156,19 @@ function xmldb_filter_oembed_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2026031300, 'filter', 'oembed');
     }
 
+    if ($oldversion < 2026031301) {
+        // Define field withcredentials to be added to filter_oembed.
+        $table = new xmldb_table('filter_oembed');
+        $field = new xmldb_field('withcredentials', XMLDB_TYPE_INTEGER, '1', null, null, null, '0', 'rendermode');
+
+        // Conditionally launch add field withcredentials.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Oembed savepoint reached.
+        upgrade_plugin_savepoint(true, 2026031301, 'filter', 'oembed');
+    }
+
     return true;
 }
