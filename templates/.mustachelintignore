@@ -1,0 +1,2 @@
+# Templates that are table row partials and cannot be validated in isolation.
+managementpagerow.mustache

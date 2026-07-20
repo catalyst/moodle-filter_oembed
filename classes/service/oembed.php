@@ -178,7 +178,7 @@ class oembed {
      */
     protected function oembed_getclienthtml(provider $provider, $requesturl, $originalurl, $params = []) {
         $paramsdata = !empty($params) ? htmlspecialchars(json_encode($params), ENT_QUOTES, 'UTF-8') : '';
-        $withcredentials = !empty($provider->withcredentials);
+        $withcredentials = (bool)$provider->withcredentials;
         $output = '<div class="oembed-client-render" ' .
                   'data-oembed-url="' . htmlspecialchars($requesturl, ENT_QUOTES, 'UTF-8') . '" ' .
                   'data-original-url="' . htmlspecialchars($originalurl, ENT_QUOTES, 'UTF-8') . '" ' .

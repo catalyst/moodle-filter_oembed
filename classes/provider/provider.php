@@ -269,6 +269,17 @@ class provider {
     }
 
     /**
+     * Magic method for isset() checks on accessible properties.
+     * Required so that empty() works correctly with __get() properties.
+     * @param string $name
+     * @return bool
+     */
+    public function __isset($name) {
+        $allowed = ['id', 'enabled', 'providername', 'providerurl', 'endpoints', 'source', 'rendermode', 'withcredentials'];
+        return in_array($name, $allowed) && isset($this->$name);
+    }
+
+    /**
      * Set enabled?
      * @param boolean $enabled
      */
